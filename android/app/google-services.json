@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "398493262294",
+    "firebase_url": "https://recipeess-6ac1a.firebaseio.com",
+    "project_id": "recipeess-6ac1a",
+    "storage_bucket": "recipeess-6ac1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398493262294:android:41d6f33a875820c4730477",
+        "android_client_info": {
+          "package_name": "com.essence.recipess"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398493262294-0rs8gpnl2rf7or41131ctv3sicq72qlm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdb0abjj_d-WShH9Pl9I6qTVsgg2_3n3U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398493262294-0rs8gpnl2rf7or41131ctv3sicq72qlm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
