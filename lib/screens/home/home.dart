@@ -22,6 +22,14 @@ class Home extends StatelessWidget {
       });
     }
 
+    Future _choiceAction(String choice) async {
+      if (choice == 'settings'){
+        _showSettingsPanel();
+      } else if ( choice == 'signout'){
+        await _auth.signOut();    
+      }
+    }
+
     return StreamProvider<List<Users>>.value(
       value: DatabaseService().users,
       child: Scaffold(
@@ -31,17 +39,19 @@ class Home extends StatelessWidget {
           backgroundColor: Color(0xffECFAF0),
           elevation: 0.0,
           actions: <Widget>[
-            FlatButton.icon(
-              icon: Icon(Icons.person),
-              label: Text('Logout'),
-              onPressed: () async {
-                await _auth.signOut();
-              }
-            ),
-            FlatButton.icon(
-              icon: Icon(Icons.settings),
-              label: Text('settings'),
-              onPressed: () => _showSettingsPanel(),
+            PopupMenuButton(
+              color: Colors.grey,
+              onSelected: _choiceAction,
+              itemBuilder: ( BuildContext context) => [
+                const PopupMenuItem(
+                  child: Text('Settings'),
+                  value: 'settings',
+                 ),
+                 const PopupMenuItem(
+                  child: Text('Logout'),
+                  value: 'signout',
+                 ),
+              ]
             ),
           ],
         ),
