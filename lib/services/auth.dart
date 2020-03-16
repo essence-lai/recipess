@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:recipess/modals/user.dart';
+import 'package:recipess/services/database.dart';
 
 class AuthService {
 
@@ -49,6 +50,10 @@ class AuthService {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = result.user;
+
+      //create user record with uid
+
+      await DatabaseService(uid: user.uid).updateUserData('New Hungry User', 'happy', 100);
 
       return _userFromFirebaseUser(user);
 
