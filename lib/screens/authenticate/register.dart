@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:recipess/services/auth.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
 
   final AuthService _auth = AuthService();
   String email = '';
@@ -14,12 +14,12 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     return Scaffold(
       backgroundColor: Color(0xffECFAF0),
       appBar: AppBar(
         backgroundColor: Color(0xff69EF8D),
         elevation: 0.0,
-        title: Text('Sign in to RecipEss'),
+        title: Text('Sign up to RecipEss'),
         ),
         body: Container(
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -43,7 +43,7 @@ class _SignInState extends State<SignIn> {
                 RaisedButton(
                   color: Colors.pinkAccent,
                   child: Text(
-                    'Sign In',
+                    'Register',
                     style: TextStyle(color: Colors.white)
                   ),
                   onPressed: () async {
