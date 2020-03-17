@@ -15,7 +15,9 @@ class UserTile extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             radius: 25.0,
-            backgroundColor: Colors.pink[user.hunger]),
+            backgroundColor: Colors.pink[user.hunger],
+            backgroundImage: AssetImage('assets/hunger.png'),
+            ),
           title: Text(user.name),
           subtitle: Text('Current Mood: ' + user.mood),
         ),

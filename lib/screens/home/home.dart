@@ -36,11 +36,12 @@ class Home extends StatelessWidget {
         backgroundColor: Color(0xffECFAF0),
         appBar: AppBar(
           title: Text('RecipEss'),
+          centerTitle: true,
           backgroundColor: Color(0xffECFAF0),
           elevation: 0.0,
           actions: <Widget>[
             PopupMenuButton(
-              color: Colors.grey,
+              color: Colors.white,
               onSelected: _choiceAction,
               itemBuilder: ( BuildContext context) => [
                 const PopupMenuItem(
@@ -55,7 +56,15 @@ class Home extends StatelessWidget {
             ),
           ],
         ),
-        body: UsersList(),
+        body: Container (
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.03), BlendMode.dstATop),
+              image: AssetImage('assets/background.png'),
+            )
+          ),
+          child: UsersList()
+        ),
       )
     );
   }
