@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipess/screens/authenticate/authentica.dart';
 import 'package:recipess/modals/user.dart';
-import 'package:recipess/screens/home/home.dart';
+import 'package:recipess/screens/router/router.dart';
 
 class Wrapper extends StatelessWidget {
   @override
@@ -15,8 +15,7 @@ class Wrapper extends StatelessWidget {
       return Authenticate();
 
     } else {
-      return Home();
-
+      return RouteView();
     }
   }
 }

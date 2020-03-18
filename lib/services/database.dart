@@ -7,8 +7,7 @@ class DatabaseService {
   final String uid;
   DatabaseService({ this.uid });
 
-  // collection reference
-  final CollectionReference recipeCollection = Firestore.instance.collection('recipes');
+  // collection reference User collection
   final CollectionReference userCollection = Firestore.instance.collection('users');
 
   Future updateUserData(String name, String mood, int hunger) async {
@@ -50,5 +49,8 @@ class DatabaseService {
   Stream<UserData> get userData {
     return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
   }
+
+  // collection reference recipe
+  final CollectionReference recipeCollection = Firestore.instance.collection('recipes');
 
 }
