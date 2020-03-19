@@ -16,10 +16,10 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             // Define the default brightness and colors.
             brightness: Brightness.light,
-            primaryColor: Color(0xff69EF8D),
+            primaryColor: Colors.greenAccent,
             accentColor: Color(0xffECFAF0),
             primaryTextTheme:  TextTheme(
-              title: TextStyle(color: Color(0xff69EF8D)),
+              title: TextStyle(color: Colors.grey),
             ),
             accentTextTheme: TextTheme(
               title: TextStyle(color: Colors.pinkAccent),

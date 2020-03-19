@@ -36,21 +36,25 @@ class _RouteViewState extends State<RouteView> with TickerProviderStateMixin<Rou
     return Scaffold(
       backgroundColor: Color(0xffECFAF0),
       appBar: AppBar(
-        title: Text('RecipEss'),
+        title: Text('RecipEss',
+        style: TextStyle(color: Colors.greenAccent, 
+        fontSize: 45,
+        fontFamily: "EyeCatchingPro")),
         centerTitle: true,
         backgroundColor: Color(0xffECFAF0),
         elevation: 0.0,
         actions: <Widget>[
           PopupMenuButton(
+            icon: Icon(Icons.more_vert, color: Colors.grey),
             color: Colors.white,
             onSelected: _choiceAction,
             itemBuilder: ( BuildContext context) => [
               const PopupMenuItem(
-                child: Text('Settings'),
+                child: ListTile(trailing: Icon(Icons.settings), title: Text('Settings')),
                 value: 'settings',
                 ),
                 const PopupMenuItem(
-                child: Text('Logout'),
+                child: ListTile(trailing: Icon(Icons.exit_to_app), title: Text('Logout')),
                 value: 'signout',
                 ),
             ]

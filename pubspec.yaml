@@ -51,6 +51,10 @@ flutter:
   assets: 
     - assets/
 
+  fonts:    
+    - family: EyeCatchingPro 
+      fonts: 
+          - asset: fonts/EyeCatchingPro.otf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

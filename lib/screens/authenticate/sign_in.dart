@@ -26,21 +26,36 @@ class _SignInState extends State<SignIn> {
     return loading ? Loading() : Scaffold(
       backgroundColor: Color(0xffECFAF0),
       appBar: AppBar(
-        backgroundColor: Color(0xff69EF8D),
+        backgroundColor: Colors.greenAccent,
         elevation: 0.0,
-        title: Text('Sign in'),
+        centerTitle: true,
+        title: Text('Sign in',
+        style: TextStyle(color: Color(0xffECFAF0))),
         actions: <Widget>[
           FlatButton.icon(onPressed: () {
             widget.toggleView();
-          }, icon: Icon(Icons.person), label: Text('Sign up'))
+          }, icon: Icon(Icons.person, color: Color(0xffECFAF0)),
+           label: Text('Sign up', 
+           style: TextStyle(color: Color(0xffECFAF0))))
         ],
         ),
         body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.03), BlendMode.dstATop),
+              image: AssetImage('assets/community.png'),
+            )
+          ),
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
           child: Form(
             key: _formKey,
             child: Column(
               children: <Widget>[
+                SizedBox(height: 20.0),
+                Text('RecipEss',
+                 style: TextStyle(color: Colors.greenAccent, 
+                 fontSize: 80,
+                 fontFamily: "EyeCatchingPro")),
                 SizedBox(height: 20.0),
                 TextFormField(
                   decoration: textInputDecoration.copyWith(hintText: 'Email'),
@@ -83,6 +98,7 @@ class _SignInState extends State<SignIn> {
                   error,
                   style: TextStyle(color: Colors.red, fontSize: 14.0),
                 )
+
               ]
             ),
           ),
