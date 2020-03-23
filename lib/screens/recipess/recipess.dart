@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipess/screens/recipess/add_recipes.dart';
 
 class Recipess extends StatelessWidget {
   @override
@@ -7,6 +8,12 @@ class Recipess extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add, color: Colors.white),
         backgroundColor: Colors.greenAccent,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddRecipes())
+          );
+        },
       ),
       backgroundColor: Color(0xffECFAF0),
       body: Container(

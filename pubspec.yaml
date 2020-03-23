@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.3.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -27,6 +27,7 @@ dependencies:
   cloud_firestore: ^0.12.9+4
   provider: ^3.1.0
   flutter_spinkit: "^4.1.2"
+  uuid: 2.0.4
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:recipess/modals/ingredient.dart';
+import 'package:recipess/modals/instruction.dart';
 import 'package:recipess/modals/user.dart';
 import 'package:recipess/modals/users.dart';
+import 'package:uuid/uuid.dart';
 
 class DatabaseService {
 
@@ -53,4 +56,29 @@ class DatabaseService {
   // collection reference recipe
   final CollectionReference recipeCollection = Firestore.instance.collection('recipes');
 
+  Future updateRecipeData( String name, String description, List<Ingredient> ingredients, List<Instruction> instructions, int servings, int calories, int prepTime, int cookTime ) async {
+    var uuid = Uuid();
+    List<Object> listOfIngredients = ingredients.map((ingredient) => {
+      'index' : ingredient.index,
+      'amount': ingredient.amount,
+      'unit' : ingredient.unit,
+      'ingredient': ingredient.ingredient
+    }).toList();
+
+    List<Object> listOfInstructions = instructions.map((instruction) => {
+      'index': instruction.index,
+      'description' : instruction.description
+    }).toList();
+
+      return await recipeCollection.document(uuid.v4()).setData({
+        'name': name,
+        'description': description,
+        'ingredients': listOfIngredients,
+        'instructions': listOfInstructions,
+        'servings': servings,
+        'calories': calories,
+        'prepTime': prepTime,
+        'cookTime': cookTime
+      });
+    }
 }
