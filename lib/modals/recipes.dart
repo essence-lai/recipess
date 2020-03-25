@@ -1,9 +1,13 @@
 class Recipes {
+  final String uid;
   final String name;
-  final int servings;
-  final List<Object> steps;
+  final String description;
   final List<Object> ingredients; 
-  final bool spicy;
+  final List<Object> instructions;
+  final int servings;
+  final int calories;
+  final int prepTime;
+  final int cookTime;
 
-  Recipes({ this.name, this.servings, this.steps, this.ingredients, this.spicy });
+  Recipes({ this.uid, this.name, this.description, this.ingredients, this.instructions, this.servings, this.calories, this.prepTime, this.cookTime });
 }

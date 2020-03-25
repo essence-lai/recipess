@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 import 'package:recipess/modals/ingredient.dart';
 import 'package:recipess/modals/instruction.dart';
+import 'package:recipess/modals/recipes.dart';
 import 'package:recipess/modals/user.dart';
 import 'package:recipess/modals/users.dart';
 import 'package:uuid/uuid.dart';
@@ -22,7 +24,6 @@ class DatabaseService {
   }
 
   // users list form snapshot
-
   List<Users> _usersListFromSnapshot(QuerySnapshot snapshot){
     return snapshot.documents.map((doc){
       return Users(
@@ -71,6 +72,7 @@ class DatabaseService {
     }).toList();
 
       return await recipeCollection.document(uuid.v4()).setData({
+        'uid': uid,
         'name': name,
         'description': description,
         'ingredients': listOfIngredients,
@@ -80,5 +82,28 @@ class DatabaseService {
         'prepTime': prepTime,
         'cookTime': cookTime
       });
+    }
+
+    // users list form snapshot
+    List<Recipes> _recipesListFromSnapshot(QuerySnapshot snapshot){
+      return snapshot.documents.map((doc){
+        print(doc['name']);
+        return Recipes(
+          uid: doc.documentID,
+          name: doc['name'],
+          description: doc['description'],
+          ingredients: doc['ingredients'],
+          instructions: doc['instructions'],
+          servings: doc['servings'],
+          calories: doc['calories'],
+          prepTime: doc['prepTime'],
+          cookTime: doc['cookTime']
+        );
+      }).toList();
+    }
+
+    // get recipes stream
+    Stream <List<Recipes>> get recipes{
+      return recipeCollection.snapshots().map(_recipesListFromSnapshot);
     }
 }

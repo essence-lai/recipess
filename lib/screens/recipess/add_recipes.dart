@@ -108,7 +108,7 @@ class _AddRecipesState extends State<AddRecipes> {
                               Text('Ingredients',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
-                                      fontSize: 24, color: Colors.greenAccent)),
+                                      fontSize: 24, color: Colors.greenAccent, fontWeight: FontWeight.bold)),
                             ],
                             ...listOfIngredientFields,
                             ...<Widget>[
@@ -326,7 +326,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                               vertical: 20.0, horizontal: 20.0),
                                           highlightColor: Colors.redAccent,
                                           splashColor: Colors.redAccent,
-                                          textColor: Colors.redAccent,
+                                          textColor: Colors.red,
                                           highlightedBorderColor: Colors.white,
                                           child: Text('Remove an Ingredient',
                                               style: TextStyle(fontSize: 14)),
@@ -356,7 +356,7 @@ class _AddRecipesState extends State<AddRecipes> {
                               Text('Recipe Steps',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
-                                      fontSize: 24, color: Colors.greenAccent)),
+                                      fontSize: 24, color: Colors.greenAccent, fontWeight: FontWeight.bold)),
                             ],
                             ...listOfInstructionFields,
                             ...<Widget>[
@@ -489,7 +489,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                             vertical: 20.0, horizontal: 30.0),
                                         highlightColor: Colors.redAccent,
                                         splashColor: Colors.redAccent,
-                                        textColor: Colors.redAccent,
+                                        textColor: Colors.red,
                                         highlightedBorderColor: Colors.white,
                                         child: Text('Remove a Step',
                                             style: TextStyle(fontSize: 14)),
@@ -519,7 +519,7 @@ class _AddRecipesState extends State<AddRecipes> {
                               Text('Good to knows',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
-                                      fontSize: 24, color: Colors.greenAccent)),
+                                      fontSize: 24, color: Colors.greenAccent, fontWeight: FontWeight.bold)),
                               SizedBox(height: 20.0),
                               TextFormField(
                                 decoration: textInputDecoration.copyWith(

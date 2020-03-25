@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:recipess/modals/recipes.dart';
 import 'package:recipess/screens/recipess/add_recipes.dart';
+import 'package:recipess/screens/recipess/recipes_list.dart';
+import 'package:recipess/services/database.dart';
 
 class Recipess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return StreamProvider<List<Recipes>>.value(
+      value: DatabaseService().recipes,
+      child:  Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add, color: Colors.white),
         backgroundColor: Colors.greenAccent,
@@ -23,7 +29,10 @@ class Recipess extends StatelessWidget {
               image: AssetImage('assets/hunger.png'),
             )
           ),
+          child: RecipesList()
       ),
+    )
+
     );
   }
 }
