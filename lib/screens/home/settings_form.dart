@@ -58,15 +58,17 @@ class _SettingsFormState extends State<SettingsForm> {
                           }).toList(),
                           onChanged: (val) => setState(() => _currentMood = val),
                         ),
+                        SizedBox(height: 10.0),
                         Slider(
                           value: ( _currentHunger ?? userData.hunger).toDouble(),
-                          activeColor: Colors.pink[_currentHunger ?? userData.hunger],
-                          inactiveColor: Colors.pink[_currentHunger ?? userData.hunger],
-                          min: 100.0,
-                          max: 900.0,
-                          divisions: 8,
-                          onChanged: (val) => setState(() => _currentHunger = val.round()),
+                          activeColor: Colors.primaries[_currentHunger ?? userData.hunger],
+                          inactiveColor: Colors.primaries[_currentHunger ?? userData.hunger],
+                          min: 0.0,
+                          max: 14.0,
+                          divisions: 13,
+                         onChanged: (val) => setState(() => _currentHunger = val.round()),
                         ),
+                        SizedBox(height: 10.0),
                         RaisedButton(
                           color: Colors.pinkAccent,
                           child: Text(
@@ -75,6 +77,7 @@ class _SettingsFormState extends State<SettingsForm> {
                           ),
                           onPressed: () async {
                             if(_formKey.currentState.validate()){
+                              print(_currentHunger);
                               await DatabaseService(uid: user.uid).updateUserData(
                                 _currentName ?? userData.name, 
                                 _currentMood ?? userData.mood,

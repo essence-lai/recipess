@@ -18,8 +18,8 @@ class RecipeTile extends StatelessWidget {
                 title: Text(
                     '${recipe.name[0].toUpperCase()}${recipe.name.substring(1)}',
                     style: TextStyle(
-                        color: Colors.greenAccent,
-                        fontSize: 45,
+                        color: Colors.green[600],
+                        fontSize: 55,
                         fontFamily: "EyeCatchingPro")),
                 subtitle: Text(
                   recipe.description,
@@ -43,9 +43,9 @@ class RecipeTile extends StatelessWidget {
                     flex: 2,
                     child: Column(
                       children: <Widget>[
-                        Icon(Icons.av_timer, color: Colors.grey),
+                        Icon(Icons.av_timer, color: Colors.lightBlue[100]),
                         SizedBox(height: 6.0),
-                        Text('${recipe.prepTime} Prep Time'),
+                        Text('${recipe.prepTime} Prep Time', style: TextStyle(color: Colors.grey)),
                       ],
                     ),
                   ),
@@ -53,9 +53,9 @@ class RecipeTile extends StatelessWidget {
                     flex: 2,
                     child: Column(
                       children: <Widget>[
-                        Icon(Icons.update, color: Colors.grey),
+                        Icon(Icons.update, color: Colors.red[100]),
                         SizedBox(height: 6.0),
-                        Text('${recipe.cookTime} Cook Time'),
+                        Text('${recipe.cookTime} Cook Time', style: TextStyle(color: Colors.grey)),
                       ],
                     ),
                   ),
@@ -63,9 +63,9 @@ class RecipeTile extends StatelessWidget {
                     flex: 2,
                     child: Column(
                       children: <Widget>[
-                        Icon(Icons.restaurant, color: Colors.grey),
+                        Icon(Icons.restaurant, color: Colors.green[100]),
                         SizedBox(height: 6.0),
-                        Text('${recipe.servings} Servings'),
+                        Text('${recipe.servings} Servings', style: TextStyle(color: Colors.grey)),
                       ],
                     ),
                   )
