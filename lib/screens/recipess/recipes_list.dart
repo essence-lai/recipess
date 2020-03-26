@@ -14,7 +14,6 @@ class _RecipesListState extends State<RecipesList> {
 
     final recipes = Provider.of<List<Recipes>>(context) ?? [];
     
-  
     return ListView.builder(
       itemCount: recipes.length,
       itemBuilder: (context, index){

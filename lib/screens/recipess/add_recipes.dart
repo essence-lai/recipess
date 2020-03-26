@@ -591,7 +591,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                   
                                     Navigator.of(context).pop();
                                     await DatabaseService(uid: user.uid).updateRecipeData(
-                                    name ?? name,
+                                    name ?? name.toLowerCase(),
                                     description ?? description, 
                                     ingredients ?? ingredients, 
                                     instructions ?? instructions, 

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
 import 'package:recipess/modals/ingredient.dart';
 import 'package:recipess/modals/instruction.dart';
 import 'package:recipess/modals/recipes.dart';
@@ -87,7 +86,6 @@ class DatabaseService {
     // users list form snapshot
     List<Recipes> _recipesListFromSnapshot(QuerySnapshot snapshot){
       return snapshot.documents.map((doc){
-        print(doc['name']);
         return Recipes(
           uid: doc.documentID,
           name: doc['name'],
