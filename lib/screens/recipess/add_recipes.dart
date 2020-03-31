@@ -48,7 +48,8 @@ class _AddRecipesState extends State<AddRecipes> {
           physics: const BouncingScrollPhysics(),
           slivers: <Widget>[
             SliverAppBar(
-              iconTheme: IconThemeData(color: Colors.grey),
+              iconTheme: IconThemeData(color: Colors.white),
+              backgroundColor: Colors.green[400],
               pinned: true,
               expandedHeight: 250.0,
               flexibleSpace: FlexibleSpaceBar(
@@ -58,14 +59,18 @@ class _AddRecipesState extends State<AddRecipes> {
                   StretchMode.fadeTitle,
                 ],
                 title: Text('Create a Recipe',
-                    style: TextStyle(color: Colors.white)),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Champagne",
+                      fontWeight: FontWeight.bold
+                      )),
                 background: Stack(
                   fit: StackFit.expand,
                   children: <Widget>[
                     Image(
                       image: AssetImage('assets/background.png'),
                       fit: BoxFit.cover,
-                      color: Colors.white.withOpacity(0.20),
+                      color: Colors.white.withOpacity(0.10),
                     )
                   ],
                 ),
@@ -96,8 +101,8 @@ class _AddRecipesState extends State<AddRecipes> {
                                 decoration: textInputDecoration.copyWith(
                                     hintText: 'Recipe Description'),
                                 keyboardType: TextInputType.multiline,
-                                maxLength: 300,
-                                maxLines: 8,
+                                maxLength: 200,
+                                maxLines: 5,
                                 validator: (val) =>
                                     val.isEmpty ? 'Tell us about it!' : null,
                                 onChanged: (val) {
@@ -108,7 +113,7 @@ class _AddRecipesState extends State<AddRecipes> {
                               Text('Ingredients',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
-                                      fontSize: 24, color: Colors.greenAccent, fontWeight: FontWeight.bold)),
+                                      fontSize: 35, color: Colors.green[600],fontWeight: FontWeight.w600, fontFamily: "Champagne"),),
                             ],
                             ...listOfIngredientFields,
                             ...<Widget>[
@@ -121,7 +126,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                               vertical: 20.0, horizontal: 20.0),
                                           highlightColor: Colors.greenAccent,
                                           splashColor: Colors.greenAccent,
-                                          textColor: Colors.greenAccent,
+                                          textColor: Colors.green[600],
                                           highlightedBorderColor: Colors.white,
                                           child: Text('Add an Ingredient',
                                               style: TextStyle(fontSize: 14)),
@@ -130,8 +135,25 @@ class _AddRecipesState extends State<AddRecipes> {
                                               listOfIngredientFields.add(SizedBox(height: 20.0));
                                               listOfIngredientFields.add( Text('Ingredient $ingredientIndex',
                                                 textAlign: TextAlign.start,
-                                                style: TextStyle(fontSize: 14, color: Colors.greenAccent)));
-                                            
+                                                style: TextStyle(fontSize: 14, color: Colors.green[400])));
+                                            listOfIngredientFields.add(SizedBox(height: 10.0));
+
+                                            listOfIngredientFields
+                                                .add( TextFormField(
+                                                  decoration: textInputDecoration.copyWith( hintText: 'Name'),
+                                                  keyboardType:
+                                                      TextInputType.text,
+                                                      validator: (val) => val.isEmpty ? 'Name': null,
+                                                  onChanged: (val) {
+                                                    final Ingredient currentIngredient = ingredients.firstWhere((ingredient) => ingredient.index == ingredientIndex,orElse: () => null);
+                                                    
+                                                    if (currentIngredient != null) {
+                                                      setState(() => { currentIngredient.ingredient = val, });
+                                                    } else {
+                                                      setState(() => ingredients.add(Ingredient(index: ingredientIndex, ingredient: val)));
+                                                    }
+                                                  },
+                                                ));
                                               listOfIngredientFields.add(SizedBox(height: 10.0));
                                               listOfIngredientFields.add(
                                                 TextFormField(
@@ -186,32 +208,6 @@ class _AddRecipesState extends State<AddRecipes> {
                                                   },
                                                 ),
                                               );
-
-                                              listOfIngredientFields.add(SizedBox(height: 10.0));
-
-                                              listOfIngredientFields
-                                                  .add( TextFormField(
-                                                  decoration: textInputDecoration
-                                                      .copyWith(
-                                                          hintText:
-                                                              'Ingredient'),
-                                                  keyboardType:
-                                                      TextInputType.text,
-                                                  validator: (val) => val.isEmpty
-                                                      ? 'Ingredient'
-                                                      : null,
-                                                  onChanged: (val) {
-                                                    final Ingredient currentIngredient = ingredients.firstWhere((ingredient) => ingredient.index == ingredientIndex,orElse: () => null);
-                                                    
-                                                    if (currentIngredient != null) {
-                                                      setState(() => {
-                                                            currentIngredient.ingredient = val,
-                                                          });
-                                                    } else {
-                                                      setState(() => ingredients.add(Ingredient(index: ingredientIndex, ingredient: val)));
-                                                    }
-                                                  },
-                                                ));
                                               ingredientIndex++;
                                             });
                                           },
@@ -224,7 +220,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                             vertical: 20.0, horizontal: 50.0),
                                         highlightColor: Colors.greenAccent,
                                         splashColor: Colors.greenAccent,
-                                        textColor: Colors.greenAccent,
+                                        textColor: Colors.green[600],
                                         highlightedBorderColor: Colors.white,
                                         child: Text('Add an Ingredient',
                                             style: TextStyle(fontSize: 14)),
@@ -233,8 +229,33 @@ class _AddRecipesState extends State<AddRecipes> {
                                             listOfIngredientFields.add(SizedBox(height: 20.0));
                                             listOfIngredientFields.add( Text('Ingredient $ingredientIndex',
                                               textAlign: TextAlign.start,
-                                              style: TextStyle(fontSize: 14, color: Colors.greenAccent)));
+                                              style: TextStyle(fontSize: 14, color: Colors.green[400])));
                                            
+                                            listOfIngredientFields.add(SizedBox(height: 10.0));
+
+                                            listOfIngredientFields
+                                                .add( TextFormField(
+                                                decoration: textInputDecoration
+                                                    .copyWith(
+                                                        hintText:
+                                                            'Name'),
+                                                keyboardType:
+                                                    TextInputType.text,
+                                                validator: (val) => val.isEmpty
+                                                    ? 'Name'
+                                                    : null,
+                                                onChanged: (val) {
+                                                  final Ingredient currentIngredient = ingredients.firstWhere((ingredient) => ingredient.index == ingredientIndex,orElse: () => null);
+                                                  
+                                                  if (currentIngredient != null) {
+                                                    setState(() => {
+                                                          currentIngredient.ingredient = val,
+                                                        });
+                                                  } else {
+                                                    setState(() => ingredients.add(Ingredient(index: ingredientIndex, ingredient: val)));
+                                                  }
+                                                },
+                                              ));
                                             listOfIngredientFields.add(SizedBox(height: 10.0));
                                             listOfIngredientFields.add(
                                               TextFormField(
@@ -289,32 +310,6 @@ class _AddRecipesState extends State<AddRecipes> {
                                                 },
                                               ),
                                             );
-
-                                            listOfIngredientFields.add(SizedBox(height: 10.0));
-
-                                            listOfIngredientFields
-                                                .add( TextFormField(
-                                                decoration: textInputDecoration
-                                                    .copyWith(
-                                                        hintText:
-                                                            'Ingredient'),
-                                                keyboardType:
-                                                    TextInputType.text,
-                                                validator: (val) => val.isEmpty
-                                                    ? 'Ingredient'
-                                                    : null,
-                                                onChanged: (val) {
-                                                  final Ingredient currentIngredient = ingredients.firstWhere((ingredient) => ingredient.index == ingredientIndex,orElse: () => null);
-                                                  
-                                                  if (currentIngredient != null) {
-                                                    setState(() => {
-                                                          currentIngredient.ingredient = val,
-                                                        });
-                                                  } else {
-                                                    setState(() => ingredients.add(Ingredient(index: ingredientIndex, ingredient: val)));
-                                                  }
-                                                },
-                                              ));
                                             ingredientIndex++;
                                           });
                                         },
@@ -356,7 +351,7 @@ class _AddRecipesState extends State<AddRecipes> {
                               Text('Recipe Steps',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
-                                      fontSize: 24, color: Colors.greenAccent, fontWeight: FontWeight.bold)),
+                                      fontSize: 35, color: Colors.green[600], fontWeight: FontWeight.w600, fontFamily: "Champagne")),
                             ],
                             ...listOfInstructionFields,
                             ...<Widget>[
@@ -369,7 +364,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                             vertical: 20.0, horizontal: 40.0),
                                         highlightColor: Colors.greenAccent,
                                         splashColor: Colors.greenAccent,
-                                        textColor: Colors.greenAccent,
+                                        textColor: Colors.green[600],
                                         highlightedBorderColor: Colors.white,
                                         child: Text('Add a Step',
                                             style: TextStyle(fontSize: 14)),
@@ -430,7 +425,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                             vertical: 20.0, horizontal: 50.0),
                                         highlightColor: Colors.greenAccent,
                                         splashColor: Colors.greenAccent,
-                                        textColor: Colors.greenAccent,
+                                        textColor: Colors.green[600],
                                         highlightedBorderColor: Colors.white,
                                         child: Text('Add a Step',
                                             style: TextStyle(fontSize: 14)),
@@ -516,10 +511,10 @@ class _AddRecipesState extends State<AddRecipes> {
                                     color: Colors.red, fontSize: 14.0),
                               ),
                               SizedBox(height: 20.0),
-                              Text('Good to knows',
+                              Text('Good to Knows',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
-                                      fontSize: 24, color: Colors.greenAccent, fontWeight: FontWeight.bold)),
+                                      fontSize: 35, color: Colors.green[600], fontWeight: FontWeight.w600, fontFamily: "Champagne")),
                               SizedBox(height: 20.0),
                               TextFormField(
                                 decoration: textInputDecoration.copyWith(
@@ -571,20 +566,20 @@ class _AddRecipesState extends State<AddRecipes> {
                                 child: Icon(Icons.add, color: Colors.white),
                                 backgroundColor: Colors.pinkAccent,
                                 onPressed: () async {
-                                  // if (instructions.length < 3) {
-                                  //   setState(() {
-                                  //     instructionError =
-                                  //         'Please add at least 3 steps';
-                                  //   });
-                                  //   return;
-                                  // }
+                                  if (instructions.length < 3) {
+                                    setState(() {
+                                      instructionError =
+                                          'Please add at least 3 steps';
+                                    });
+                                    return;
+                                  }
                                   
-                                  // if (ingredients.length < 3) {
-                                  //   setState((){
-                                  //     ingredientError = 'Please add at least 3 ingredients';
-                                  //   });
-                                  //   return;
-                                  // }
+                                  if (ingredients.length < 3) {
+                                    setState((){
+                                      ingredientError = 'Please add at least 3 ingredients';
+                                    });
+                                    return;
+                                  }
                                   
                                   if (_formKey.currentState.validate()) {
                                     setState(() => loading = true);

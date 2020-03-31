@@ -14,25 +14,25 @@ class RecipeTile extends StatelessWidget {
           margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
           child: Column(
             children: <Widget>[
+              SizedBox(height: 6.0),
               ListTile(
                 title: Text(
                     '${recipe.name[0].toUpperCase()}${recipe.name.substring(1)}',
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         color: Colors.green[600],
-                        fontSize: 55,
-                        fontFamily: "EyeCatchingPro")),
+                        fontSize: 35,
+                        fontFamily: "Champagne")),
                 subtitle: Text(
                   recipe.description,
                   overflow: TextOverflow.ellipsis,
                 ),
-                trailing: IconButton(
-                  icon: Icon(
+                trailing: Padding( 
+                  padding: EdgeInsets.only(bottom: 20.0),
+                  child: Icon(
                     recipe.prepTime == 20 ? Icons.favorite : Icons.favorite_border,
                     color: recipe.prepTime == 20? Colors.red : null,
                   ),
-                  onPressed: () {
-                    favourite = !favourite;
-                  },
                 ),
               ),
               SizedBox(height: 6.0),

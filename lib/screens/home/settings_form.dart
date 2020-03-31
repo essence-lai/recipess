@@ -37,7 +37,7 @@ class _SettingsFormState extends State<SettingsForm> {
                       children: <Widget>[
                         Text(
                           'Update your user settings.',
-                          style: TextStyle(fontSize: 18.0),
+                          style: TextStyle(fontSize: 25.0, fontFamily: "Champagne", fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: 20.0),
                         TextFormField(

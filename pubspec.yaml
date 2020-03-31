@@ -57,6 +57,16 @@ flutter:
     - family: EyeCatchingPro 
       fonts: 
           - asset: fonts/EyeCatchingPro.otf
+    - family: Champagne
+      fonts: 
+        - asset: fonts/Champagne.ttf
+        - asset: fonts/ChampagneItalic.ttf
+          style: italic
+        - asset: fonts/ChampagneBold.ttf
+          weight: 700
+        - asset: fonts/ChampagneBoldItalic.ttf
+          style: italic
+          weight: 700
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
