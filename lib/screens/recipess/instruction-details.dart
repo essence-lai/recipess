@@ -18,21 +18,20 @@ class _InstructionDetailState extends State<InstructionDetail> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: Padding(
+      child: GestureDetector(
+        onHorizontalDragStart: ( details){
+          setState(() {
+            checked = !checked;
+          });
+        },
+        child:    Padding(
         padding: EdgeInsets.fromLTRB(34, 16, 20, 4),
         child: Row(
           children: <Widget>[
             Expanded(child: 
-              GestureDetector(
-                onHorizontalDragStart: ( details){
-                  setState(() {
-                    checked = !checked;
-                  });
-                },
-                child: Center( child: Text('${ instruction['description']}',
-                  style: TextStyle(fontSize: 16.0, decoration: checked ? TextDecoration.lineThrough: TextDecoration.none),
-                  )
-                ),
+             Center( child: Text('${ instruction['description']}',
+                style: TextStyle(fontSize: 16.0, decoration: checked ? TextDecoration.lineThrough: TextDecoration.none),
+                )
               ),
             ),
             Checkbox(
@@ -47,9 +46,8 @@ class _InstructionDetailState extends State<InstructionDetail> {
           ),
           ],
         )
-          
-         
         )
+      )
     );
   }
 }

@@ -5,12 +5,25 @@ import 'package:recipess/screens/recipess/ingredient-details.dart';
 import 'package:recipess/screens/recipess/instruction-details.dart';
 import 'dart:math';
 
-class RecipeDetails extends StatelessWidget {
+class RecipeDetails extends StatefulWidget{
   final Recipes recipe;
-  RecipeDetails({this.recipe});
+  double fraction;
+  RecipeDetails({this.recipe, this.fraction});
+
+  @override
+  _RecipeDetails createState() => _RecipeDetails(recipe: this.recipe, fraction: fraction);
+}
+
+class _RecipeDetails extends State<RecipeDetails> {
+  final Recipes recipe;
+  double fraction;
+  _RecipeDetails({this.recipe, this.fraction});
+
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       backgroundColor:  Color(0xffECFAF0),
       body: CustomScrollView(
@@ -20,6 +33,18 @@ class RecipeDetails extends StatelessWidget {
               backgroundColor: Colors.green[400],
               pinned: true,
               expandedHeight: 250.0,
+              actions: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(right: 16.0),
+                  child: Tooltip(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal:20),
+                    margin: EdgeInsets.all(10),
+                    showDuration: Duration( seconds: 20),
+                    message: 'Use the Slider to change the portions of your recipe! \n\nTo cross off an ingredient or step, you can swipe on the ingredient or tap the checkbox!',
+                    child: Icon(Icons.help_outline),
+                  )
+                )
+              ],
               flexibleSpace: FlexibleSpaceBar(
                 stretchModes: <StretchMode>[
                   StretchMode.zoomBackground,
@@ -50,11 +75,23 @@ class RecipeDetails extends StatelessWidget {
                   return Column(
                     children: <Widget>[
                       Center(child: Container(
-                        color: Colors.green[400],
-                        width: 9999,
-                        padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
-                        child: Text('${recipe.description}', style: TextStyle(color: Colors.white, backgroundColor: Colors.green[400]))
-                      ),),
+                          color: Colors.green[400],
+                          width: 9999,
+                          padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
+                          child: Text('${recipe.description}', style: TextStyle(color: Colors.white, backgroundColor: Colors.green[400]))
+                        ),
+                      ),
+                      Slider(
+                          value: fraction,
+                          activeColor: Colors.green[600],
+                          inactiveColor: Colors.white,
+                          min: 0.50,
+                          max: 2.0,
+                          divisions: 3,
+                          onChanged: (val) => setState(() => fraction = val ),
+                          label: '$fraction',
+                        ),
+                      
                       Card(
                         margin: EdgeInsets.fromLTRB(6.0, 6.0, 6.0, 0.0),
                         child:  Padding(
@@ -68,7 +105,7 @@ class RecipeDetails extends StatelessWidget {
                                   children: <Widget>[
                                     Icon(Icons.av_timer, color: Colors.lightBlue[100]),
                                     SizedBox(height: 6.0),
-                                    Text('${recipe.prepTime} Prep Time', style: TextStyle(color: Colors.grey)),
+                                    Text('${(recipe.prepTime + 10*fraction - 10).round()} Prep Time', style: TextStyle(color: Colors.grey)),
                                   ],
                                 ),
                               ),
@@ -78,7 +115,7 @@ class RecipeDetails extends StatelessWidget {
                                   children: <Widget>[
                                     Icon(Icons.update, color: Colors.red[100]),
                                     SizedBox(height: 6.0),
-                                    Text('${recipe.cookTime} Cook Time', style: TextStyle(color: Colors.grey)),
+                                    Text('${(recipe.prepTime + 10*fraction - 10).round()} Cook Time', style: TextStyle(color: Colors.grey)),
                                   ],
                                 ),
                               ),
@@ -88,7 +125,7 @@ class RecipeDetails extends StatelessWidget {
                                   children: <Widget>[
                                     Icon(Icons.restaurant, color: Colors.green[100]),
                                     SizedBox(height: 6.0),
-                                    Text('${recipe.servings} Servings', style: TextStyle(color: Colors.grey)),
+                                    Text('${(recipe.servings*fraction).round()} Servings', style: TextStyle(color: Colors.grey)),
                                   ],
                                 ),
                               ),
@@ -98,7 +135,7 @@ class RecipeDetails extends StatelessWidget {
                                   children: <Widget>[
                                     Icon(Icons.directions_run, color: Colors.orange[100]),
                                     SizedBox(height: 6.0),
-                                    Text('${recipe.calories ?? '...'} Calories', style: TextStyle(color: Colors.grey)),
+                                    Text('${(recipe.calories*fraction).round() ?? '...'} Calories', style: TextStyle(color: Colors.grey)),
                                   ],
                                 ),
                               )
@@ -107,7 +144,7 @@ class RecipeDetails extends StatelessWidget {
                         )
                       ),
                       SizedBox(height: 20.0),
-                      Text('What you will need', style: TextStyle(fontFamily: "Champagne", fontSize: 30)),
+                      Text('What you will need', style: TextStyle(fontFamily: "Champagne", fontSize: 30,  fontWeight: FontWeight.w600)),
                       SizedBox(height: 20.0),
                     ],
                   );
@@ -119,7 +156,7 @@ class RecipeDetails extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, index) {
                     Map<String, dynamic> ingredient = Map<String, dynamic>.from(recipe.ingredients[index]);
-                    return IngredientDetail(checked: false, ingredient: ingredient);
+                    return IngredientDetail(checked: false, ingredient: ingredient, fraction: fraction);
                   },
                   childCount: recipe.ingredients.length
                 ),
@@ -142,18 +179,8 @@ class RecipeDetails extends StatelessWidget {
                           padding: EdgeInsets.only(top: 10),
                           child: ListTile(
                             title: Align(
-                              alignment: Alignment(0.3,0.0),
+                              alignment: Alignment(0.0,0.0),
                               child:  Text('Let\'s Get Started', style: TextStyle(fontFamily: "Champagne", fontSize: 30, fontWeight: FontWeight.w600)),
-                            ),
-                            trailing: Padding(
-                              padding: EdgeInsets.only(right: 16.0),
-                              child: Tooltip(
-                                padding: EdgeInsets.symmetric(vertical: 20, horizontal:20),
-                                margin: EdgeInsets.all(10),
-                                showDuration: Duration( seconds: 20),
-                                message: 'To cross off a step, you can swipe on the step or tap the checkbox!',
-                                child: Icon(Icons.help_outline),
-                              )
                             )
                           )
                         )

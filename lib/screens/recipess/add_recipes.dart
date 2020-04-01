@@ -566,7 +566,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                 child: Icon(Icons.add, color: Colors.white),
                                 backgroundColor: Colors.pinkAccent,
                                 onPressed: () async {
-                                  if (instructions.length < 3) {
+                                  if (instructions.length < 2) {
                                     setState(() {
                                       instructionError =
                                           'Please add at least 3 steps';
@@ -574,7 +574,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                     return;
                                   }
                                   
-                                  if (ingredients.length < 3) {
+                                  if (ingredients.length < 2) {
                                     setState((){
                                       ingredientError = 'Please add at least 3 ingredients';
                                     });

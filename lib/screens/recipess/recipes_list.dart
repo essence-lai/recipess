@@ -16,13 +16,14 @@ class _RecipesListState extends State<RecipesList> {
     final recipes = Provider.of<List<Recipes>>(context) ?? [];
     
     return ListView.builder(
+      physics: BouncingScrollPhysics(),
       itemCount: recipes.length,
       itemBuilder: (context, index){
         return GestureDetector(
           onTap: () { 
             Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => RecipeDetails(recipe: recipes[index]))
+            MaterialPageRoute(builder: (context) => RecipeDetails(recipe: recipes[index], fraction: 1))
           );
           },
           onLongPress: () {print('set favourite');},
