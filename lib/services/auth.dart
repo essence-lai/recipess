@@ -53,7 +53,7 @@ class AuthService {
 
       //create user record with uid
 
-      await DatabaseService(uid: user.uid).updateUserData('New Hungry User', 'happy', 300);
+      await DatabaseService(uid: user.uid).updateUserData('New Hungry User', 'happy', 300, []);
 
       return _userFromFirebaseUser(user);
 

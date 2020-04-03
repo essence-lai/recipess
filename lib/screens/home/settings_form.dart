@@ -77,11 +77,11 @@ class _SettingsFormState extends State<SettingsForm> {
                           ),
                           onPressed: () async {
                             if(_formKey.currentState.validate()){
-                              print(_currentHunger);
                               await DatabaseService(uid: user.uid).updateUserData(
                                 _currentName ?? userData.name, 
                                 _currentMood ?? userData.mood,
-                                _currentHunger ?? userData.hunger
+                                _currentHunger ?? userData.hunger,
+                                userData.favourites
                                 );
                                 Navigator.pop(context);
                             }

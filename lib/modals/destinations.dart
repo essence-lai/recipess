@@ -8,5 +8,6 @@ class Destination {
 
 const List<Destination> allDestinations = <Destination>[
   Destination('Recipes', Icons.fastfood),
+  Destination('Favourites', Icons.favorite),
   Destination('Community', Icons.face)
 ];

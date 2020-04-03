@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipess/modals/destinations.dart';
 import 'package:recipess/screens/home/home.dart';
 import 'package:recipess/screens/home/settings_form.dart';
+import 'package:recipess/screens/recipess/favourites.dart';
 import 'package:recipess/screens/recipess/recipess.dart';
 import 'package:recipess/services/auth.dart';
 
@@ -11,7 +12,7 @@ class RouteView extends StatefulWidget {
 }
 
 class _RouteViewState extends State<RouteView> with TickerProviderStateMixin<RouteView> {
-  int _currentIndex = 0;
+  int _currentIndex = 1;
   final AuthService _auth = AuthService();
 
   void _showSettingsPanel(){
@@ -67,6 +68,7 @@ class _RouteViewState extends State<RouteView> with TickerProviderStateMixin<Rou
           index: _currentIndex,
           children: <Widget>[
             Recipess(),
+            Favourites(),
             Home(),
           ],
         )

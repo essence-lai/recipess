@@ -14,11 +14,12 @@ class DatabaseService {
   // collection reference User collection
   final CollectionReference userCollection = Firestore.instance.collection('users');
 
-  Future updateUserData(String name, String mood, int hunger) async {
+  Future updateUserData(String name, String mood, int hunger, List<dynamic> favourites) async {
     return await userCollection.document(uid).setData({
       'name': name,
       'mood': mood,
       'hunger': hunger,
+      'favourites': favourites,
     });
   }
 
@@ -28,7 +29,8 @@ class DatabaseService {
       return Users(
         name: doc.data['name'] ?? '',
         mood: doc.data['mood'] ?? 'okay',
-        hunger: doc.data['hunger'] ?? 300
+        hunger: doc.data['hunger'] ?? 300,
+        favourites: doc.data['favourites'] ?? []
       );
     }).toList();
   }
@@ -40,6 +42,7 @@ class DatabaseService {
       name: snapshot.data['name'],
       mood: snapshot.data['mood'],
       hunger: snapshot.data['hunger'],
+      favourites: snapshot.data['favourites'] 
     );
   }
 

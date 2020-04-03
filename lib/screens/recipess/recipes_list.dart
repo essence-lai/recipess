@@ -26,7 +26,6 @@ class _RecipesListState extends State<RecipesList> {
             MaterialPageRoute(builder: (context) => RecipeDetails(recipe: recipes[index], fraction: 1))
           );
           },
-          onLongPress: () {print('set favourite');},
           child: RecipeTile(recipe: recipes[index])
         );
       },
