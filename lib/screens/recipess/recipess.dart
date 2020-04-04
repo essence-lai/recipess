@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipess/modals/recipes.dart';
 import 'package:recipess/screens/recipess/add_recipes.dart';
+import 'package:recipess/screens/recipess/recipe_tile.dart';
 import 'package:recipess/screens/recipess/recipes_list.dart';
+import 'package:recipess/screens/search/search_bar.dart';
 import 'package:recipess/services/database.dart';
 
 class Recipess extends StatelessWidget {
@@ -29,7 +31,7 @@ class Recipess extends StatelessWidget {
               image: AssetImage('assets/hunger.png'),
             )
           ),
-          child: RecipesList()
+          child: RecipeSearchBar(),
       ),
     )
 

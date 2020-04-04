@@ -65,7 +65,7 @@ class DatabaseService {
       'index' : ingredient.index,
       'amount': ingredient.amount,
       'unit' : ingredient.unit,
-      'ingredient': ingredient.ingredient
+      'ingredient': ingredient.ingredient,
     }).toList();
 
     List<Object> listOfInstructions = instructions.map((instruction) => {
@@ -82,7 +82,8 @@ class DatabaseService {
         'servings': servings,
         'calories': calories,
         'prepTime': prepTime,
-        'cookTime': cookTime
+        'cookTime': cookTime,
+        'searchKey': name.trim().substring(0,1).toUpperCase()
       });
     }
 
@@ -98,7 +99,8 @@ class DatabaseService {
           servings: doc['servings'],
           calories: doc['calories'],
           prepTime: doc['prepTime'],
-          cookTime: doc['cookTime']
+          cookTime: doc['cookTime'],
+          searchKey: doc['searchKey'],
         );
       }).toList();
     }

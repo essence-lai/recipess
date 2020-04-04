@@ -119,6 +119,7 @@ class _AddRecipesState extends State<AddRecipes> {
                             ...<Widget>[
                               SizedBox(height: 20.0),
                               ListTile(
+                                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                                 leading: listOfIngredientFields.length > 1 ? 
                                   OutlineButton(
                                           shape: StadiumBorder(),
@@ -357,6 +358,7 @@ class _AddRecipesState extends State<AddRecipes> {
                             ...<Widget>[
                               SizedBox(height: 20.0),
                               ListTile(
+                                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                                 leading: listOfInstructionFields.length > 1
                                     ? OutlineButton(
                                         shape: StadiumBorder(),

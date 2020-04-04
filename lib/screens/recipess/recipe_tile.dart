@@ -7,7 +7,7 @@ import 'package:recipess/shared/loading.dart';
 
 class RecipeTile extends StatelessWidget {
   final Recipes recipe;
-  bool favourite = false;
+  final bool favourite = false;
   RecipeTile({this.recipe});
 
   @override
@@ -26,7 +26,7 @@ class RecipeTile extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: Card(
-                margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
+                margin: EdgeInsets.fromLTRB(0.0, 6.0, 0.0, 0.0),
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: 6.0),

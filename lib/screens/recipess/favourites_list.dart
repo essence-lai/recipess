@@ -4,7 +4,6 @@ import 'package:recipess/modals/recipes.dart';
 import 'package:recipess/modals/user.dart';
 import 'package:recipess/screens/recipess/recipe-details.dart';
 import 'package:recipess/screens/recipess/recipe_tile.dart';
-import 'package:recipess/screens/recipess/recipess.dart';
 import 'package:recipess/services/database.dart';
 import 'package:recipess/shared/loading.dart';
 
@@ -48,7 +47,10 @@ class _FavouriteListState extends State<FavouriteList> {
                     MaterialPageRoute(builder: (context) => RecipeDetails(recipe: userFavourites[index], fraction: 1))
                   );
                   },
-                  child: RecipeTile(recipe: userFavourites[index])
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: RecipeTile(recipe: userFavourites[index])
+                  )
                 );
               },
             );
@@ -77,8 +79,8 @@ class _FavouriteListState extends State<FavouriteList> {
                       child: Column(
                         children: <Widget>[
                           SizedBox(height: 80.0),
-                          Text('No favourites yet?', style: TextStyle(fontFamily: 'Champagne', fontSize: 25)),
-                          Text('Try out some recipes!', style: TextStyle(fontFamily: 'Champagne', fontSize: 25))
+                          Text('No favourites yet?', style: TextStyle(fontFamily: 'Champagne', fontWeight: FontWeight.w600, fontSize: 25)),
+                          Text('Try out some recipes!', style: TextStyle(fontFamily: 'Champagne', fontWeight: FontWeight.w600, fontSize: 25))
                         ],
                       )
                     )

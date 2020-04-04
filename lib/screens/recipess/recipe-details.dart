@@ -1,18 +1,18 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:recipess/modals/recipes.dart';
 import 'package:recipess/modals/user.dart';
-import 'package:recipess/screens/recipess/ingredient-details.dart';
-import 'package:recipess/screens/recipess/instruction-details.dart';
-import 'dart:math';
+import 'package:recipess/screens/recipess/ingredient_details.dart';
+import 'package:recipess/screens/recipess/instruction_details.dart';
 import 'package:recipess/services/database.dart';
 import 'package:recipess/shared/loading.dart';
 
 
 class RecipeDetails extends StatefulWidget{
   final Recipes recipe;
-  double fraction;
+  final double fraction;
   RecipeDetails({this.recipe, this.fraction});
 
   @override
@@ -217,9 +217,40 @@ class _RecipeDetails extends State<RecipeDetails> {
                   SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, index) {
-                          return Container( color: Colors.white, height: 45.0 );
+                          return Container( 
+                            color: Colors.white, 
+                            height: 450.0,
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                              child: Column(
+                                children: <Widget>[
+                                  SizedBox(height: 100.0),
+                                  GestureDetector(
+                                    onTap: () async {
+                                      if(_favourites.contains(recipe.uid)) {
+                                        _favourites.removeWhere((favourite) =>  favourite == recipe.uid);
+                                      } else {
+                                        _favourites.add(recipe.uid);
+                                      }
+                                      
+                                      await DatabaseService(uid: user.uid).updateUserData(userData.name, userData.mood, userData.hunger, _favourites);
+                                    },
+                                    child: SpinKitPumpingHeart(
+                                      color: Colors.pinkAccent,
+                                      size: 50.0
+                                    ),
+                                  ),
+                                  SizedBox(height: 20.0),
+                                  Text('WooHoo, You Did it!', style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Champagne', fontSize: 25 )),
+                                  Text('Did you enjoy this recipe?', style: TextStyle( fontFamily: 'Champagne', fontSize: 25 )),
+                                  Text('Click on a heart to add it!', style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Champagne', fontSize: 25 )),
+                                ],
+                              ),
+                            )
+
+                            );
                         },
-                        childCount: max(10 - recipe.ingredients.length, 0)
+                        childCount: 1
                       ),
                   )
               ],

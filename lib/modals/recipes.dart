@@ -8,6 +8,7 @@ class Recipes {
   final int calories;
   final int prepTime;
   final int cookTime;
+  final String searchKey;
 
-  Recipes({ this.uid, this.name, this.description, this.ingredients, this.instructions, this.servings, this.calories, this.prepTime, this.cookTime });
+  Recipes({ this.uid, this.name, this.description, this.ingredients, this.instructions, this.servings, this.calories, this.prepTime, this.cookTime, this.searchKey });
 }
