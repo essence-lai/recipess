@@ -7,7 +7,7 @@ import 'package:recipess/shared/loading.dart';
 
 class RecipeTile extends StatelessWidget {
   final Recipes recipe;
-  bool favourite = false;
+  final bool favourite = false;
   RecipeTile({this.recipe});
 
   @override

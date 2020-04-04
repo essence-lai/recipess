@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class IngredientDetail extends StatefulWidget {
   final bool checked;
   final Map<String, dynamic> ingredient;
-  double fraction;
+  final double fraction;
   IngredientDetail({ this.checked, this.ingredient, this.fraction });
 
   @override
