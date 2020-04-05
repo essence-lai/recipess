@@ -242,7 +242,6 @@ class _RecipeDetails extends State<RecipeDetails> {
                                   ),
                                   SizedBox(height: 20.0),
                                   Text('WooHoo, You Did it!', style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Champagne', fontSize: 25 )),
-                                  Text('Did you enjoy this recipe?', style: TextStyle( fontFamily: 'Champagne', fontSize: 25 )),
                                   Text('Click on a heart to add it!', style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Champagne', fontSize: 25 )),
                                 ],
                               ),
