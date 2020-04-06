@@ -106,7 +106,15 @@ class DatabaseService {
     }
 
     // get recipes stream
-    Stream <List<Recipes>> get recipes{
-      return recipeCollection.snapshots().map(_recipesListFromSnapshot);
-    }
+  Stream <List<Recipes>> get recipes{
+    return recipeCollection.snapshots().map(_recipesListFromSnapshot);
+  }
+
+  Stream <List<Recipes>> get myRecipes{
+    return recipeCollection.where('uid', isEqualTo: uid).snapshots().map(_recipesListFromSnapshot);
+  }
+
+  Future removeRecipe(String docId) async{
+    return await recipeCollection.document(docId).delete();
+  }
 }

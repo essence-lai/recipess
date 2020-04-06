@@ -35,11 +35,6 @@ class _SettingsFormState extends State<SettingsForm> {
                     key: _formKey,
                     child: Column(
                       children: <Widget>[
-                        Text(
-                          'Update your user settings.',
-                          style: TextStyle(fontSize: 25.0, fontFamily: "Champagne", fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(height: 20.0),
                         TextFormField(
                           initialValue: userData.name,
                           decoration: textInputDecoration.copyWith(hintText: 'Name'),

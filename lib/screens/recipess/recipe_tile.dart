@@ -44,10 +44,21 @@ class RecipeTile extends StatelessWidget {
                       ),
                       trailing: Padding( 
                         padding: EdgeInsets.only(bottom: 20.0),
-                        child: Icon(
-                           _favourites.contains(recipe.uid) ? Icons.favorite : Icons.favorite_border,
-                          color: _favourites.contains(recipe.uid) ? Colors.red : null,
-                        ),
+                        child: IconButton(
+                          onPressed: () async {
+                            if(_favourites.contains(recipe.uid)) {
+                              _favourites.removeWhere((favourite) =>  favourite == recipe.uid);
+                            } else {
+                              _favourites.add(recipe.uid);
+                            }
+                            
+                            await DatabaseService(uid: user.uid).updateUserData(userData.name, userData.mood, userData.hunger, _favourites);
+                          },
+                          icon:   Icon(
+                            _favourites.contains(recipe.uid) ? Icons.favorite : Icons.favorite_border,
+                            color: _favourites.contains(recipe.uid) ? Colors.red : null,
+                          ),
+                        )
                       ),
                     ),
                     SizedBox(height: 6.0),
