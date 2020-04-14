@@ -35,7 +35,7 @@ class _SignInState extends State<SignIn> {
           FlatButton.icon(onPressed: () {
             widget.toggleView();
           }, icon: Icon(Icons.person, color: Color(0xffECFAF0)),
-           label: Text('Sign up', 
+           label: Text('Register', 
            style: TextStyle(color: Color(0xffECFAF0))))
         ],
         ),

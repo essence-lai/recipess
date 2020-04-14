@@ -24,19 +24,19 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
      return loading ? Loading() : Scaffold(
-      backgroundColor: Color(0xffECFAF0),
+      backgroundColor: Colors.pink[50],
       appBar: AppBar(
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Colors.pink[200],
         elevation: 0.0,
         centerTitle: true,
-        title: Text('Sign up',
+        title: Text('Register',
         style: TextStyle(color: Color(0xffECFAF0))),
         actions: <Widget>[
           FlatButton.icon(onPressed: () {
             widget.toggleView();
            }, icon: Icon(Icons.person_outline, 
            color: Color(0xffECFAF0)), 
-           label: Text('Sign in', 
+           label: Text('Sign In', 
            style: TextStyle(color: Color(0xffECFAF0))))
         ],
         ),
@@ -53,10 +53,10 @@ class _RegisterState extends State<Register> {
             child: Column(
               children: <Widget>[
                 SizedBox(height: 20.0),
-                Text('RecipEss',
-                 style: TextStyle(color: Colors.greenAccent, 
-                 fontSize: 80,
-                 fontFamily: "EyeCatchingPro")),
+                Text('Lets get started!',
+                 style: TextStyle( 
+                 fontSize: 35,
+                 fontFamily: "Champagne")),
                 SizedBox(height: 20.0),
                 TextFormField(
                   decoration: textInputDecoration.copyWith(hintText: 'Email'),
@@ -76,7 +76,7 @@ class _RegisterState extends State<Register> {
                 ),
                 SizedBox(height: 20.0),
                 RaisedButton(
-                  color: Colors.pinkAccent,
+                  color: Colors.green[300],
                   child: Text(
                     'Register',
                     style: TextStyle(color: Colors.white)

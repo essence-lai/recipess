@@ -211,7 +211,7 @@ class _RecipeDetails extends State<RecipeDetails> {
                           Map<String, dynamic> instruction = Map<String, dynamic>.from(recipe.instructions[index]);
                           return InstructionDetail(checked: false, instruction: instruction);
                         },
-                        childCount: recipe.ingredients.length
+                        childCount: recipe.instructions.length
                       ),
                   ),
                   SliverList(

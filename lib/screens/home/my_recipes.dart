@@ -5,6 +5,7 @@ import 'package:recipess/modals/user.dart';
 import 'package:recipess/screens/recipess/recipe-details.dart';
 import 'package:recipess/screens/recipess/recipe_tile.dart';
 import 'package:recipess/services/database.dart';
+import 'package:recipess/shared/loading.dart';
 
 class MyRecipes extends StatefulWidget {
   @override
@@ -19,10 +20,10 @@ class _MyRecipesState extends State<MyRecipes> {
     return StreamBuilder<List<Recipes>>(
       stream: DatabaseService(uid: user.uid).myRecipes,
       builder: (context, snapshot) {
-        
-        return ListView.builder(
+        if(snapshot.hasData){
+return ListView.builder(
           physics: BouncingScrollPhysics(),
-          itemCount: snapshot.data.length,
+          itemCount: snapshot.data.length ,
           itemBuilder: (context, index){
             return Dismissible(
               key: Key(index.toString()), 
@@ -56,6 +57,9 @@ class _MyRecipesState extends State<MyRecipes> {
               );
           },
         );
+        } else {
+          return Loading();
+        }
 
       }
     );

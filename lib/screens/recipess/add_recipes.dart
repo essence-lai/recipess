@@ -6,6 +6,7 @@ import 'package:recipess/services/database.dart';
 import 'package:recipess/shared/constants.dart';
 import 'package:recipess/shared/loading.dart';
 import 'package:provider/provider.dart';
+import 'package:validators/validators.dart';
 
 
 class AddRecipes extends StatefulWidget {
@@ -90,6 +91,7 @@ class _AddRecipesState extends State<AddRecipes> {
                               TextFormField(
                                 decoration: textInputDecoration.copyWith(
                                     hintText: 'Recipe Name'),
+                                maxLength: 35,
                                 validator: (val) =>
                                     val.isEmpty ? 'Enter a name' : null,
                                 onChanged: (val) {
@@ -101,7 +103,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                 decoration: textInputDecoration.copyWith(
                                     hintText: 'Recipe Description'),
                                 keyboardType: TextInputType.multiline,
-                                maxLength: 200,
+                                maxLength: 150,
                                 maxLines: 5,
                                 validator: (val) =>
                                     val.isEmpty ? 'Tell us about it!' : null,
@@ -133,12 +135,12 @@ class _AddRecipesState extends State<AddRecipes> {
                                               style: TextStyle(fontSize: 14)),
                                           onPressed: () {
                                             setState(() {
-                                              listOfIngredientFields.add(SizedBox(height: 20.0));
-                                              listOfIngredientFields.add( Text('Ingredient $ingredientIndex',
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(fontSize: 14, color: Colors.green[400])));
+                                            listOfIngredientFields.add(SizedBox(height: 20.0));
+                                            listOfIngredientFields.add( Text('Ingredient $ingredientIndex',
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(fontSize: 14, color: Colors.green[400])));
+                                            
                                             listOfIngredientFields.add(SizedBox(height: 10.0));
-
                                             listOfIngredientFields
                                                 .add( TextFormField(
                                                   decoration: textInputDecoration.copyWith( hintText: 'Name'),
@@ -156,6 +158,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                                   },
                                                 ));
                                               listOfIngredientFields.add(SizedBox(height: 10.0));
+
                                               listOfIngredientFields.add(
                                                 TextFormField(
                                                   decoration: textInputDecoration
@@ -164,8 +167,8 @@ class _AddRecipesState extends State<AddRecipes> {
                                                               'Amount'),
                                                   keyboardType:
                                                       TextInputType.number,
-                                                  validator: (val) => val.isEmpty
-                                                      ? 'Amount'
+                                                  validator: (val) => val.isEmpty || !isNumeric(val)
+                                                      ? 'Amount' 
                                                       : null,
                                                   onChanged: (val) {
                                                     final Ingredient currentIngredient = ingredients.firstWhere((ingredient) => ingredient.index == ingredientIndex,orElse: () => null);
@@ -266,7 +269,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                                             'Amount'),
                                                 keyboardType:
                                                     TextInputType.number,
-                                                validator: (val) => val.isEmpty
+                                                validator: (val) => val.isEmpty || !isNumeric(val)
                                                     ? 'Amount'
                                                     : null,
                                                 onChanged: (val) {
@@ -343,11 +346,21 @@ class _AddRecipesState extends State<AddRecipes> {
                                       : null,                             
                               ),
                               SizedBox(height: 10.0),
-                              Text(
-                                ingredientError,
-                                style: TextStyle(
-                                    color: Colors.red, fontSize: 14.0),
-                              ),
+                               ingredientError.isNotEmpty ?  Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.red[300],
+                                    borderRadius: BorderRadius.all(Radius.circular(40.0))
+                                  ),
+                                  child:  ListTile(
+                                  contentPadding: EdgeInsets.symmetric(vertical:5.0, horizontal:30.0),
+                                  leading: Icon(Icons.error_outline, color: Colors.white),
+                                  title:  Text(
+                                    ingredientError,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 18.0),
+                                  ),
+                                ),
+                              ): SizedBox(height: 10.0),
                               SizedBox(height: 20.0),
                               Text('Recipe Steps',
                                   textAlign: TextAlign.start,
@@ -507,11 +520,21 @@ class _AddRecipesState extends State<AddRecipes> {
                                     : null,
                               ),
                               SizedBox(height: 10.0),
-                              Text(
-                                instructionError,
-                                style: TextStyle(
-                                    color: Colors.red, fontSize: 14.0),
-                              ),
+                              instructionError.isNotEmpty ?  Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.red[300],
+                                    borderRadius: BorderRadius.all(Radius.circular(40.0))
+                                  ),
+                                  child:  ListTile(
+                                  contentPadding: EdgeInsets.symmetric(vertical:5.0, horizontal:30.0),
+                                  leading: Icon(Icons.error_outline, color: Colors.white),
+                                  title:  Text(
+                                    instructionError,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 18.0),
+                                  ),
+                                ),
+                              ): SizedBox(height: 10.0),
                               SizedBox(height: 20.0),
                               Text('Good to Knows',
                                   textAlign: TextAlign.start,
@@ -522,7 +545,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                 decoration: textInputDecoration.copyWith(
                                     hintText: 'Number of Servings'),
                                 validator: (val) =>
-                                    val.isEmpty ? 'Enter a number' : null,
+                                    val.isEmpty  || !isNumeric(val) ? 'Enter a number' : null,
                                 keyboardType: TextInputType.number,
                                 onChanged: (val) {
                                   int servingsVal = int.tryParse(val);
@@ -534,6 +557,8 @@ class _AddRecipesState extends State<AddRecipes> {
                                 decoration: textInputDecoration.copyWith(
                                     hintText: 'Calories'),
                                 keyboardType: TextInputType.number,
+                                validator: (val) =>
+                                    !isNumeric(val) ? 'Enter a number' : null,
                                 onChanged: (val) {
                                   int caloriesVal = int.tryParse(val);
                                   setState(() => calories = caloriesVal);
@@ -544,7 +569,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                 decoration: textInputDecoration.copyWith(
                                     hintText: 'Prep Time (mins)'),
                                 validator: (val) =>
-                                  val.isEmpty ? 'Enter a number' : null,
+                                  val.isEmpty || !isNumeric(val)? 'Enter a number' : null,
                                 keyboardType: TextInputType.number,
                                 onChanged: (val) {
                                   int prepVal = int.tryParse(val);
@@ -556,7 +581,7 @@ class _AddRecipesState extends State<AddRecipes> {
                                 decoration: textInputDecoration.copyWith(
                                     hintText: 'Cook Time (mins)'),
                                 validator: (val) =>
-                                  val.isEmpty ? 'Enter a number' : null,
+                                  val.isEmpty || !isNumeric(val)? 'Enter a number' : null,
                                 keyboardType: TextInputType.number,
                                 onChanged: (val) {
                                   int cookVal = int.tryParse(val);
