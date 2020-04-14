@@ -29,7 +29,7 @@ class DatabaseService {
       return Users(
         name: doc.data['name'] ?? '',
         mood: doc.data['mood'] ?? 'okay',
-        hunger: doc.data['hunger'] ?? 300,
+        hunger: doc.data['hunger'] ?? 0,
         favourites: doc.data['favourites'] ?? []
       );
     }).toList();
